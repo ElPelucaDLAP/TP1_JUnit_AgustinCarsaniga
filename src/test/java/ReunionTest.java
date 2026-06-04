@@ -11,6 +11,26 @@ public class ReunionTest {
     private Contacto participante2;
     private Contacto participante3;
 
+    @BeforeAll
+    static void iniciarSuite() {
+        System.out.println(" Iniciando suite de pruebas de Reunion ");
+    }
+
+    @AfterEach
+    void testXterminado (){
+        System.out.println("*");
+    }
+
+    @BeforeAll
+    static void testTerminado() {
+        System.out.println("Finalizando prueba");
+    }
+
+    @AfterAll
+    static void finalizarSuite() {
+        System.out.println("=== Suite finalizada ===");
+    }
+
     @BeforeEach
     void inicializarParametros (){
         participante1 = new Contacto("Roberto","2494066674", "ejemplo1@gmail.com");
@@ -36,14 +56,16 @@ public class ReunionTest {
     @Test
     void testThrowsConstructorFinDeReunionMenorInicio () {
         assertThrows(IllegalArgumentException.class, ()->{
-            new Reunion(LocalDateTime.of(2026, 6, 20, 12, 0), LocalDateTime.of(2026, 6, 20, 11, 0), "AS", "av 123");
+            new Reunion(LocalDateTime.of(2026, 6, 20, 12, 0), LocalDateTime.of(2026, 6, 20, 11, 0),
+                    "AS", "av 123");
         });
     }
 
     @Test
     void testThrowsConstructorFinDeReunionIgualInicio () {
         assertThrows(IllegalArgumentException.class, ()->{
-            new Reunion(LocalDateTime.of(2026, 6, 20, 12, 0), LocalDateTime.of(2026, 6, 20, 12, 0), "AS", "av 123");
+            new Reunion(LocalDateTime.of(2026, 6, 20, 12, 0), LocalDateTime.of(2026, 6, 20, 12, 0),
+                    "AS", "av 123");
         });
     }
 
@@ -69,8 +91,13 @@ public class ReunionTest {
     }
 
     @Test
+    void testYaExisteContactoNull () {
+        assertFalse(reunion1.yaExisteContacto(null));
+    }
+
+    @Test
     void testYaExisteContactoNuevo () {
-        reunion1.anadirParticipante(participante1);
+        reunion1.yaExisteContacto(participante1);
         assertFalse(reunion1.yaExisteContacto(participante3));
     }
 
@@ -82,25 +109,29 @@ public class ReunionTest {
 
     @Test
     void testCompartimosHorarioNoSePisan (){
-        Reunion reunion2 = new Reunion(LocalDateTime.of(2026, 6, 20, 14, 0), LocalDateTime.of(2026, 6, 20, 16, 0), "AS", "av 123");
+        Reunion reunion2 = new Reunion(LocalDateTime.of(2026, 6, 20, 14, 0),
+                LocalDateTime.of(2026, 6, 20, 16, 0), "AS", "av 123");
         assertFalse(reunion1.compartimosHorario(reunion2));
     }
 
     @Test
     void testCompartimosHorarioEsAnterior () {
-        Reunion reunion5 = new Reunion(LocalDateTime.of(2026, 6, 20, 10, 30), LocalDateTime.of(2026, 6, 20, 12, 30), "AS", "av 123");
+        Reunion reunion5 = new Reunion(LocalDateTime.of(2026, 6, 20, 10, 30),
+                LocalDateTime.of(2026, 6, 20, 12, 30), "AS", "av 123");
         assertTrue(reunion1.compartimosHorario(reunion5));
     }
 
     @Test
     void testCompartimosHorarioArrancaAntes () {
-        Reunion reunion3 = new Reunion(LocalDateTime.of(2026, 6, 20, 13, 30), LocalDateTime.of(2026, 6, 20, 15, 0), "AS", "av 123");
+        Reunion reunion3 = new Reunion(LocalDateTime.of(2026, 6, 20, 13, 30),
+                LocalDateTime.of(2026, 6, 20, 15, 0), "AS", "av 123");
         assertTrue(reunion1.compartimosHorario(reunion3));
     }
 
     @Test
     void testCompartimosHorarioContenidaDentroDeOtra () {
-        Reunion reunion4 = new Reunion(LocalDateTime.of(2026, 6, 20, 12, 30), LocalDateTime.of(2026, 6, 20, 13, 30), "AS", "av 123");
+        Reunion reunion4 = new Reunion(LocalDateTime.of(2026, 6, 20, 12, 30),
+                LocalDateTime.of(2026, 6, 20, 13, 30), "AS", "av 123");
         assertTrue(reunion1.compartimosHorario(reunion4));
     }
 }

@@ -74,7 +74,6 @@ public class Reunion {
         }
         if (!yaExisteContacto(nuevoParticipante)){
             this.contactosDeReunion.add(nuevoParticipante);
-            System.out.println("+ participante reunion");
         }
     }
     public boolean yaExisteContacto (Contacto nuevoParticipante) {

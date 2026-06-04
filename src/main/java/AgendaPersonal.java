@@ -9,15 +9,23 @@ public class AgendaPersonal {
         this.contactos = new ArrayList<Contacto>();
     }
     public void anadirContacto (Contacto nuevoContacto) {
-        if (!existeConflictoContacto(nuevoContacto)){
+        if(nuevoContacto == null){
+            throw new IllegalArgumentException("El contacto no puede ser null");
+        }
+        if (existeConflictoContacto(nuevoContacto)){
+            throw new IllegalStateException("Conflicto de horario con otra reunión");
+        }else {
             this.contactos.add(nuevoContacto);
-            System.out.println("+ contacto");
         }
     }
     public void anadirReunion (Reunion nuevaReunion){
-        if (!existeConflictoReunion(nuevaReunion)){
+        if (nuevaReunion == null) {
+            throw new IllegalArgumentException("La reunión no puede ser null");
+        }
+        if (existeConflictoReunion(nuevaReunion)){
+            throw new IllegalStateException("Conflicto de horario con otra reunión");
+        }else{
             this.reunionesAgendadas.add(nuevaReunion);
-            System.out.println("+ reunion");
         }
     }
 

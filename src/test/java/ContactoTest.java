@@ -8,6 +8,21 @@ private  Contacto contactoDePrueba1;
 private  Contacto contactoDePrueba2;
 private  Reunion reunionDePrueba;
 
+    @BeforeAll
+    static void iniciarSuite() {
+        System.out.println(" Iniciando suite de pruebas de Contacto ");
+    }
+
+    @AfterEach
+    void testXterminado (){
+        System.out.println("*");
+    }
+
+    @AfterAll
+    static void finalizarSuite() {
+        System.out.println("=== Suite finalizada ===");
+    }
+
     @BeforeEach
     void inicializarParametros (){
         contactoDePrueba1 = new Contacto("Roberto","2494066642","1@gmail");
