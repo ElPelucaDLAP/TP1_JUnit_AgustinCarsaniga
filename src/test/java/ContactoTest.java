@@ -65,7 +65,7 @@ private  Reunion reunionDePrueba;
 
     @Test
     void testEqualsIdentificarDiferente (){
-        assertNotEquals(true,contactoDePrueba1.equals(contactoDePrueba2));
+        assertFalse(contactoDePrueba1.equals(contactoDePrueba2));
     }
 
     @Test

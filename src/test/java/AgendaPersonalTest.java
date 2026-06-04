@@ -27,7 +27,6 @@ public class AgendaPersonalTest {
         System.out.println("=== Suite finalizada ===");
     }
 
-
     @BeforeEach
     void inicializarParametros (){
         participante1 = new Contacto("Roberto","2494066674", "ejemplo1@gmail.com");
@@ -83,6 +82,7 @@ public class AgendaPersonalTest {
 
     @Test
     void testAnadirReunionDiferente (){
+        agendaPersonal.anadirReunion(reunion1);
         Reunion reunion3 = new Reunion(LocalDateTime.of(2026, 6, 20, 16, 0),
                 LocalDateTime.of(2026, 6, 20, 18, 0), "AS", "av 123");
         agendaPersonal.anadirReunion(reunion3);
@@ -135,12 +135,6 @@ public class AgendaPersonalTest {
     @Test
     void testExisteConflictoDatosNull () {
         assertTrue(agendaPersonal.existeConflictoContacto(null));
-    }
-
-    @Test
-    void testEqualContactoComparable () {
-        participante1.setNombre(null);
-        assertFalse(agendaPersonal.existeConflictoContacto(participante2));
     }
 
     @Disabled

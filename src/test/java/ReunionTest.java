@@ -97,7 +97,7 @@ public class ReunionTest {
 
     @Test
     void testYaExisteContactoNuevo () {
-        reunion1.yaExisteContacto(participante1);
+        reunion1.anadirParticipante(participante1);
         assertFalse(reunion1.yaExisteContacto(participante3));
     }
 

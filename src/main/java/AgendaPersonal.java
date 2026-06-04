@@ -13,7 +13,7 @@ public class AgendaPersonal {
             throw new IllegalArgumentException("El contacto no puede ser null");
         }
         if (existeConflictoContacto(nuevoContacto)){
-            throw new IllegalStateException("Conflicto de horario con otra reunión");
+            throw new IllegalStateException("Conflicto contacto identico");
         }else {
             this.contactos.add(nuevoContacto);
         }
