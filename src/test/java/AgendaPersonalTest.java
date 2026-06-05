@@ -91,6 +91,7 @@ public class AgendaPersonalTest {
 
     @Test
     void testCompartimosHorarioNoSePisan (){
+        agendaPersonal.anadirReunion(reunion1);
         Reunion reunion2 = new Reunion(LocalDateTime.of(2026, 6, 20, 14, 0),
                 LocalDateTime.of(2026, 6, 20, 16, 0), "AS", "av 123");
         assertFalse(agendaPersonal.existeConflictoReunion(reunion2));
