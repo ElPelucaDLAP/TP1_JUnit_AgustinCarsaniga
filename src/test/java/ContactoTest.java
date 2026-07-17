@@ -64,13 +64,27 @@ private  Reunion reunionDePrueba;
     }
 
     @Test
+    void testConstructorNombreValidoNoLanzaExcepcion(){
+        assertDoesNotThrow(() -> {
+            new Contacto("Roberto","2494066642","cualquier@mail.com");
+        });
+    }
+
+    @Test
+    void testConstructorMailValidoNoLanzaExcepcion(){
+        assertDoesNotThrow(() -> {
+            new Contacto("CualquierNombre","2494066642","1@gmail");
+        });
+    }
+
+    @Test
     void testEqualsIdentificarDiferente (){
         assertFalse(contactoDePrueba1.equals(contactoDePrueba2));
     }
 
     @Test
     void testEqualsIdentificarIgual () {
-        Contacto mismo = new Contacto("Roberto","2494066652","1@gmail");
+        Contacto mismo = new Contacto("Roberto","2494066652","3@gmail");
         assertTrue(contactoDePrueba1.equals(mismo));
     }
 
